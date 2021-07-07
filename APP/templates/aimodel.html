@@ -1,0 +1,37 @@
+{% extends "navigation.html" %}
+{% block content %}
+    {%  if current_user.is_authenticated  %}
+        {% if current_user.role == 'Clinician' %}
+        <div class="card">
+            <div class="card-header">
+              <ul class="nav nav-tabs card-header-tabs">
+                <li class="nav-item">
+                  <a class="nav-link" aria-current="true" href="/home">Home</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link active" href="/aimodel">AI Diagnosis</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/report" tabindex="-1" aria-disabled="false">Send Report</a>
+                </li>
+              </ul>
+            </div>
+            <div class="card-body">
+              <h3>Welcome to iCovidAIDiagnosis App</h3>
+              <p>Please Upload an X-ray image</p>
+              <img class="card-img-top" src="static/wel.jpg" alt="default" style = "width: 150px;height: 150px;" />
+              <div class="form-group text-left">
+                {{ form.picture.label() }}
+                {{ form.picture(class="form-control-file") }}
+                {% if form.picture.errors %}
+                    {% for error in form.picture.errors %}
+                        <span class="text-danger">{{ error }}</span></br>
+                    {% endfor %}
+                {% endif %}
+              </div>
+              <button class="btn btn-primary">Upload X-Ray</button>
+            </div>
+        </div>
+        {% endif%}
+    {%endif%}
+{%endblock content%}

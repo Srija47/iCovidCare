@@ -1,0 +1,110 @@
+{% extends "navigation.html" %}
+{% block content %}
+  {%  if current_user.is_authenticated  %}
+    <h3>Have a Great Day!!!</h3>
+    <p>Stay home!Stay safe!</p>
+    {% if current_user.role == 'Patient' %}
+      <h5>Your Appointments</h5>
+      <div class="card-body ">
+        <table border=1 width=100%>
+          <tr>
+            <th>Description</th>
+            <th>Appointment-type</th>
+            <th>Appointment-Date</th>
+            <th>Report</th>
+          </tr>
+          {% for app,pat in appointments %}
+            {%  if current_user.email == pat.email %}
+              <tr>
+                <td>{{app.description}}</td>
+                <td>{{app.appointment_type}}</td>
+                <td>{{app.appointment_date}}</td>
+                <td> <a href ="/patient_report" class="btn btn-primary btn-sm">Report</a></td>
+              </tr>
+            {% endif %}
+          {% endfor %}
+        </table>
+      </div>
+    {% elif current_user.role == 'Doctor' %}
+      <h5>Appointments</h5>
+      <div class="card-body">
+        <table border=1 width=100%>
+          <tr>
+            <th>PatientName</th>
+            <th>Age</th>
+            <th>Gender</th>
+            <th>PhoneNumber</th>
+            <th>Description</th>
+            <th>Appointment-Date</th>
+            <th>Report</th>
+          </tr>
+          {% for app,pat in doctorview %}
+            {% if app.appointment_type == 'Doctor'%}
+            <tr>
+              <td>{{pat.username}}</td>
+              <td>{{pat.age}}</td>
+              <td>{{pat.gender}}</td>
+              <td>{{pat.phonenumber}}</td>
+              <td>{{app.description}}</td>
+              <td>{{app.appointment_date}} </td>
+              <td><a href ="/doctor_report" class="btn btn-primary btn-sm">Send Report</a></td>
+            </tr>
+            {% endif%}  
+          {% endfor %}
+        </table> 
+      </div> 
+    {% elif current_user.role == 'Clinician' %}
+      <div class="card ">
+        <div class="card-header">
+          <ul class="nav nav-tabs card-header-tabs">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="true" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/aimodel">AI Diagnosis</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/report" tabindex="-1" aria-disabled="false">Send Report</a>
+            </li>
+          </ul>
+        </div>
+        <div class="card-body">
+          <h5>Your Appointments</h5>
+          <table class="table table-hover" id="dev-table">
+            <thead>
+              <tr>
+                <th>Patient Name</th>
+                <th>Picture</th>
+                <th>Age</th>
+                <th>Gender</th>
+                <th>Description</th>
+                <th>Mobile</th>
+                <th>Address</th>
+                <th>Appointment Date</th>
+                <th>Book Appointment</th>
+              </tr>
+            </thead>
+            {% for app,pat,doc in clinicianview %}
+              {% if app.appointment_type == 'clinician'%}
+              <tr>
+                <td>{{pat.username}}</td>
+                <td> <img src="{{ url_for('static', filename='profile_pics/'+ pat['image_file']) }}" alt="{{pat.image_file}}" height="40px" width="40px" /></td>
+                <td>{{pat.age}}</td>
+                <td>{{pat.gender}}</td>
+                <td>{{app.description}}</td>
+                <td>{{pat.phonenumber}}</td>
+                <td>{{pat.address}}</td>
+                <td>{{app.appointment_date}}</td>
+                <td> <a href="/clin_appoint" class="btn btn-primary btn-sm">Book Appointment</a></td>
+              </tr>
+              {% endif %}
+            {% endfor %}
+          </table>
+        </div>
+      </div>
+    {% endif %}
+  {% else %}
+    <h1>Welcome to iCovidCare</h1>
+    <p>SignIn if you are already our user! Else please SignUp first.</p>
+  {% endif %}
+{% endblock content %}

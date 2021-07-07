@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css') }}">
+
+    {% if title %}
+        <title>iCovidCare- {{ title }}</title>
+    {% else %}
+        <title> iCovidCare</title>
+    {% endif %}
+  </head>
+  <body>
+    <header class="site-header">
+      <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
+        <div class="container">
+          <a class="navbar-brand mr-4" href="/">iCovidCare</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarToggle">
+            <div class="navbar-nav mr-auto">
+              <form class="form-inline my-2 my-lg-0"> 
+                <input id="search" class="form-control mr-sm-2" class="form-control" type="text" placeholder="Search"> 
+                <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button> 
+              </form>
+            </div>
+            <!-- Navbar Right Side -->
+            <div class="navbar-nav">
+                <a class="nav-item nav-link" href="{{ url_for('main.layout') }}"><i class="fa fa-home"> </i>Home</a>
+                <a class="nav-item nav-link" href="{{ url_for('main.contact') }}">ContactUs</a>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <div>
+      <h1 style="text-align:center;">About Covid</h1>
+    <h3>Overview</h3>
+    <p>Coronavirus disease (COVID-19) is an infectious disease caused by a newly discovered coronavirus.
+        Most people infected with the COVID-19 virus will experience mild to moderate respiratory illness and recover without requiring special treatment.  Older people, and those with underlying medical problems like cardiovascular disease, diabetes, chronic respiratory disease, and cancer are more likely to develop serious illness.
+        The best way to prevent and slow down transmission is to be well informed about the COVID-19 virus, the disease it causes and how it spreads. Protect yourself and others from infection by washing your hands or using an alcohol based rub frequently and not touching your face.    
+        The COVID-19 virus spreads primarily through droplets of saliva or discharge from the nose when an infected person coughs or sneezes, so it’s important that you also practice respiratory etiquette (for example, by coughing into a flexed elbow).
+    </p>
+    <h3>Symptoms</h3>
+    <p>COVID-19 affects different people in different ways. Most infected people will develop mild to moderate illness and recover without hospitalization.</p>
+    <h6>Most common symptoms:</h6>
+    <ul>
+        <li>Fever</li>
+        <li>Dry cough</li>
+        <li>Tiredness</li>
+    </ul>
+    <h6>Less common symptoms:</h6> 
+    <ul>
+        <li>Aches and pains</li>
+        <li>Sore throat</li>
+        <li>Diarrhoea</li>
+        <li>Conjunctivitis</li>
+        <li>Headache</li>
+        <li>Loss of taste or smell</li>
+        <li>a rash on skin, or discolouration of fingers or toes</li>
+    </ul>
+    <h6>Serious symptoms:</h6>
+    <ul>
+        <li>Difficulty breathing or shortness of breath.</li>
+        <li>Chest pain or pressure</li>
+        <li>Loss of speech or movement</li>
+    </ul>
+    <p>Seek immediate medical attention if you have serious symptoms.  Always call before visiting your doctor or health facility.</p> 
+    <p>People with mild symptoms who are otherwise healthy should manage their symptoms at home.</p> 
+    <p>On average it takes 5–6 days from when someone is infected with the virus for symptoms to show, however it can take up to 14 days.</p>
+    <h3>Prevention</h3>
+    <p>To prevent infection and to slow transmission of COVID-19, do the following:</p>
+    <ul>
+        <li>Wash your hands regularly with soap and water, or clean them with alcohol-based hand rub</li>
+        <li>Maintain at least 1 metre distance between you and people coughing or sneezing</li>
+        <li>Avoid touching your face</li>
+        <li>Cover your mouth and nose when coughing or sneezing</li>
+        <li>Stay home if you feel unwell</li>
+        <li>Stay home if you feel unwell</li>
+        <li>Refrain from smoking and other activities that weaken the lungs</li>
+        <li>Practice physical distancing by avoiding unnecessary travel and staying away from large groups of people</li>
+    </ul>
+    </div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  </body>
+</html>

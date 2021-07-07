@@ -1,0 +1,35 @@
+{% extends "navigation.html" %}
+{% block content %}
+  {%  if current_user.is_authenticated  %}
+    <h3>Have a Great Day!!!</h3>
+    <p>Stay home!Stay safe!</p>
+    {% if current_user.role == 'Patient' %}
+      <h5>Your Reports</h5>
+      <div class="card-body ">
+        <table border=1 width=100%>
+          <tr>
+            <th>PatientName</th>
+            <th>DoctorName</th>
+            <th>Description</th>
+            <th>Appointment-type</th>
+            <th>Appointment-Date</th>
+            <th>Report</th>
+          </tr>
+          {% for rep,app,pat,doc in reports %}
+            <tr>
+              <td>{{pat.username}}</td>
+              <td>{{doc.username}}</td>
+              <td>{{app.description}}</td>
+              <td>{{app.appointment_type}}</td>
+              <td>{{app.appointment_date}}</td>
+              <td>{{rep.description}}</td>
+            </tr>
+          {% endfor %}
+        </table>
+      </div>
+    {% endif %}
+  {% else %}
+    <h1>Welcome to iCovidCare</h1>
+    <p>SignIn if you are already our user! Else please SignUp first.</p>
+  {% endif %}
+{% endblock content %}

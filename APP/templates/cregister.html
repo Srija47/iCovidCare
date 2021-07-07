@@ -1,0 +1,89 @@
+{% extends "navigation.html" %}
+{% block content %}
+<legend class="text-center">Sign Up</legend>
+<div class="content-section col-xl-5 col-lg-6 col-md-8 col-sm-10 mx-auto form p-0">
+    <form method="POST" action="/cregister">
+        {{ form.hidden_tag() }}
+        <div class="form-group">
+                {% if form.name.errors %}
+                    {{ form.name(class="form-control form-control-md is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.name.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.name(class="form-control form-control-md") }}
+                {% endif %}
+            </div>
+            <div class="form-group">
+                {% if form.email.errors %}
+                    {{ form.email(class="form-control form-control-md is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.email.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.email(class="form-control form-control-md") }}
+                {% endif %}
+            </div>
+                 <div class="form-group">
+                    {% if form.password.errors %}
+                        {{ form.password(class="form-control form-control-md is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.password.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.password(class="form-control form-control-md") }}
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    {% if form.confirm_password.errors %}
+                        {{ form.confirm_password(class="form-control form-control-md is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.confirm_password.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.confirm_password(class="form-control form-control-md") }}
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    {% if form.location.errors %}
+                        {{ form.location(class="form-control form-control-md is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.location.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.location(class="form-control form-control-md") }}
+                    {% endif %}
+                </div>
+                <div class="form-group">
+                    {% if form.phonenum.errors %}
+                        {{ form.phonenum(class="form-control form-control-md is-invalid") }}
+                        <div class="invalid-feedback">
+                            {% for error in form.phonenum.errors %}
+                                <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        {{ form.phonenum(class="form-control form-control-md") }}
+                    {% endif %}
+                </div>
+            </div>
+            <div class="form-group text-center">
+                {{ form.submit(class="btn btn-outline-info") }}
+            </div>
+    </form>
+        <div class="border-top pt-3 text-center">
+        <small class="text-muted">
+            Already Have An Account? <a class="ml-2" href="{{ url_for('users.login') }}">Sign In</a>
+        </small>
+    </div>
+{% endblock content %}
