@@ -20,16 +20,10 @@
               <h3>Welcome to iCovidAIDiagnosis App</h3>
               <p>Please Upload an X-ray image</p>
               <img class="card-img-top" src="static/wel.jpg" alt="default" style = "width: 150px;height: 150px;" />
-              <div class="form-group text-left">
-                {{ form.picture.label() }}
-                {{ form.picture(class="form-control-file") }}
-                {% if form.picture.errors %}
-                    {% for error in form.picture.errors %}
-                        <span class="text-danger">{{ error }}</span></br>
-                    {% endfor %}
-                {% endif %}
-              </div>
-              <button class="btn btn-primary">Upload X-Ray</button>
+              <form method = "POST" enctype = "multipart/form-data">
+                <input id="image" class="form-control mr-sm-2" type="file" name ="image">
+                <button type="submit" class="btn btn-default" formaction="/predict" value="Predict" >Upload</button> 
+              </form>
             </div>
         </div>
         {% endif%}

@@ -241,6 +241,7 @@ class DocReport(FlaskForm):
 class upload(FlaskForm):
      picture=FileField('Upload X-Ray',
                                     validators=[FileAllowed(['jpg', 'png','pdf','xml'])])
+     submit=SubmitField('Upload')
 
 
 class clin_appoint(FlaskForm):

@@ -1,0 +1,48 @@
+{% extends "navigation.html" %}
+{% block content %}
+    {%  if current_user.is_authenticated  %}
+        {% if current_user.role == 'Clinician' %}
+        <div class="card">
+            <div class="card-header">
+              <ul class="nav nav-tabs card-header-tabs">
+                <li class="nav-item">
+                  <a class="nav-link" href="/home">Home</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="true" href="/aimodel">AI Diagnosis</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="/report" tabindex="-1" aria-disabled="false">Send Report</a>
+                </li>
+              </ul>
+            </div>
+            <div class="card-body">
+                <h4 style="margin:auto;width:80%;text-align:center;margin-top: 20px;text-transform: uppercase;">Covid19 Classification</h4>
+                <div style="width:90%;margin:auto;text-align:center">
+                    <img src="{{url_for('users.send_file',filename=image_file_name)}}" style="max-width: 500px;max-height: 450px;margin-top: 30px;margin-bottom: 10px;">
+                    <p style="font-style: italic;">{{image_file_name}}</p>
+                    <h3 style="margin-top:40px;"><b>Probability of having<span style="color:green;">{{label}}</span></b></h3>
+                      {% if label=="Covid" %}
+                        {% if accuracy==100 %}
+                            <p>Risk Factor is <span style="color:red;">{{accuracy}}</span></p>
+                            <h3><b>Percentage:<span style="color:green;">{{accuracy}}%</span></b></h3>
+                        {% else %}
+                          <p>Risk Factor is<span style="color:red;">None</span></p>
+                          <h3><b>Percentage:<span style="color:green;">{{accuracy}}%</span></b></h3>
+                        {% endif %}
+                      {% else %}
+                        {% if acc==100 %}
+                          <p>Risk Factor is <span style="color:red;">None</span></p>
+                          <h3><b>Percentage:<span style="color:green;">{{acc}}%</span></b></h3>
+                        {% else %}
+                          <p>Risk Factor is <span style="color:red;">{{acc}}</span></p>
+                          <h3><b>Percentage:<span style="color:green;">{{acc}}%</span></b></h3>
+                        {% endif %}
+                      {% endif %}
+                    <a href="/aimodel">Back to Home</a>
+                </div>
+            </div>
+        </div>
+        {% endif%}
+    {%endif%}
+{%endblock content%}
